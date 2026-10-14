@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="website_title"> FarmifyMe🍃
+  <a href="index.html" class="logout">Logout</a>
+</header>
+<nav class="tagline"> Looking for fresh, locally sourced farm produce? Connect directly with farmers, discover products available for purchase, and submit requests for what you need. Whether you’re sourcing for your home, business, or institution, find the right products while supporting local farmers and making access to food more convenient and reliable. </nav>
+
+<div>
+  <h2>Your Cart</h2>
+  <h3>Total: Ksh <span id="cart-total">0</span></h3>
+</div>
+
+  <main id="cart-grid" class="products"></main>
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; clear: both;">
+  <a href="products.html"><button class="cart_buttons">Home </button></a>
+  <button class="cart_buttons" onclick="clearCart()">Clear Cart</button>
+</div>
+
+<footer>
+  <div>Connecting farmers to the market</div>
+</footer>
+
+  
+  <script>
+    let cart = JSON.parse(localStorage.getItem('myCart')) || [];
+    const cartGrid = document.getElementById('cart-grid');
+    let total = 0;
+
+    const emojiMap = {
+      'Kale': '🥬',
+      'Potato': '🥔',
+      'Carrot': '🥕',
+      'Peas': '🫛',
+      'Apples': '🍎',
+      'Orange': '🍊',
+      'Banana': '🍌',
+      'Strawberry': '🍓',
+      'Beef Stake': '🥩',
+      'Chicken Leg': '🍗',
+      'Tilapia': '🐟',
+      'Pork': '🐖'
+    };
+
+    let groupedCart = [];
+    cart.forEach(item => {
+      let existing = groupedCart.find(gItem => gItem.name === item.name);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        groupedCart.push({ name: item.name, price: item.price, quantity: 1 });
+      }
+    });
+
+    groupedCart.forEach(item => {
+      let itemTotalCost = item.price * item.quantity;
+      total += itemTotalCost; 
+
+      let productEmoji = emojiMap[item.name] || '📦';
+
+      let card = document.createElement('div');
+      card.classList.add('product-card');
+      
+      card.innerHTML = `
+        <div class="product-image">${productEmoji}</div>
+        <h3>${item.name}</h3>
+        <div style="color: #666; font-size: 14px; margin-bottom: 5px;">Quantity: ${item.quantity}</div>
+        <p>Ksh ${itemTotalCost}</p>
+      `;
+      
+      cartGrid.appendChild(card);
+    });
+
+    document.getElementById('cart-total').textContent = total;
+
+    function clearCart() {
+      localStorage.removeItem('myCart');
+      location.reload(); 
+    }
+  </script>
+
+</body>
+</html>

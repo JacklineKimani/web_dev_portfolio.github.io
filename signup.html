@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FarmifyMe - Sign Up</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="general_form">
+    <div class="account-box">
+
+        <div class="website_title">FarmifyMe🍃</div>
+        <br>
+
+        <form action="/signup" method="POST">
+
+            <label for="name">Name</label>
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+            <label for="email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter your email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Create a password"
+                required
+            >
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm your password"
+                required
+            >
+
+            <button type="submit">Sign Up</button>
+
+        </form>
+
+        <p>
+            Already have an account?
+            <a href="index.html" style="color: blue;">Log in</a>
+        </p>
+
+        <br>
+
+        <a href="Products.html">
+            <h3>Log in as guest</h3>
+        </a>
+
+    </div>
+</div>
+
+</body>
+</html>
